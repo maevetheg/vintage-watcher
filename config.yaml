@@ -1,0 +1,46 @@
+# ---- Notifications ----
+# Install the free "ntfy" app, subscribe to a topic name only you know,
+# and put the same name here (or set NTFY_TOPIC as an environment variable).
+ntfy_topic: "change-me-to-something-random-like-ad-archive-7391"
+
+# ---- eBay (official API, most reliable) ----
+ebay:
+  enabled: true
+  queries:                      # misspellings catch underpriced listings
+    - "Ann Demeulemeester"
+    - "Ann Demulemeester"
+    - "Ann Demeulemester"
+    - "Anne Demeulemeester"
+  min_price: 0
+  max_price: 400                # your budget in USD
+  size_keywords: []             # e.g. ["38", "IT 38", "FR 36", "small"]; empty = no size filter
+                                # (only works if sellers put size in the title)
+
+# ---- Other sites ----
+# For each site: open it in a browser, search Ann Demeulemeester,
+# apply YOUR size + price filters, sort by newest, then paste that URL here.
+# Leave pattern as-is; it tells the script which links are listings.
+sites:
+  - name: The RealReal
+    url: "https://www.therealreal.com/products?keywords=ann+demeulemeester&sort=newest&taxons[]=329&clothing_size[]=26&clothing_size[]=27&shoe_size[]=38&shoe_size[]=39&shoe_size[]=40&price_to=300"
+    pattern: "/products/"
+
+  - name: Poshmark
+    url: "https://poshmark.com/brand/Ann_Demeulemeester-Women?sort_by=added_desc&from_search=true&price%5B%5D=-200&availability=coming_soon&availability=available&my_size=true"
+    pattern: "/listing/"
+
+  - name: Mercari
+    url: "PASTE_YOUR_FILTERED_SEARCH_URL"
+    pattern: "/item/m\\d+"
+
+  - name: Depop
+    url: "PASTE_YOUR_FILTERED_SEARCH_URL"
+    pattern: "/products/"
+
+  - name: Vestiaire Collective
+    url: "https://www.vestiairecollective.com/search/?q=ann+demeulemeester&sortBy=3#gender=Women%231_brand=Ann%20Demeulemeester%23622_priceMax=30000_color=Black%2314"
+    pattern: "-\\d+\\.shtml$"
+
+  - name: Vinted
+    url: "https://www.vinted.com/catalog?order=newest_first&color_ids[]=1&currency=USD&brand_ids[]=51445&price_to=300"
+    pattern: "/items/\\d+"
